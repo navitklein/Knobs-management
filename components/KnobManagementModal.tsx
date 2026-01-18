@@ -604,9 +604,19 @@ const KnobManagementModal: React.FC<KnobManagementModalProps> = ({
 
         {/* MODAL FOOTER */}
         <div className="px-8 py-5 bg-gray-50 border-t border-gray-100 flex items-center justify-between shrink-0">
-           <div className="flex items-center gap-2">
-              <Info className="w-3.5 h-3.5 text-gray-400" />
-              <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest">CHANGES ARE STAGED UNTIL COMMITTED TO THE BUILD STEP</p>
+           <div className="flex-1 flex flex-col gap-1">
+              <div className="flex items-center gap-2">
+                 <Info className="w-3.5 h-3.5 text-gray-400" />
+                 <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest">CHANGES ARE STAGED UNTIL COMMITTED TO THE BUILD STEP</p>
+              </div>
+              {counts.Warnings > 0 && (
+                <div className="flex items-center gap-2 animate-in slide-in-from-left duration-300">
+                   <AlertTriangle className="w-3.5 h-3.5 text-red-500" />
+                   <p className="text-[10px] text-red-600 font-black uppercase tracking-widest">
+                     YOU CAN SAVE CONFIGURATION BUT YOU WILL BE BLOCKED AND NEED TO RESOLVE IT IN THE RUN
+                   </p>
+                </div>
+              )}
            </div>
            <div className="flex gap-4">
               <button onClick={onClose} className="px-6 py-2.5 text-[10px] font-black text-gray-500 hover:bg-gray-200 rounded-xl uppercase tracking-widest transition-all">DISCARD CHANGES</button>
